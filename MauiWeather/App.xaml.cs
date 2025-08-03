@@ -1,15 +1,21 @@
-﻿namespace MauiWeather
+﻿using MauiWeather.ViewModels;
+using MauiWeather.Views;
+
+namespace MauiWeather
 {
     public partial class App : Application
     {
-        public App()
+        private readonly WeatherPageViewModel weatherPageViewModel;
+
+        public App(WeatherPageViewModel weatherPageViewModel)
         {
             InitializeComponent();
+            this.weatherPageViewModel = weatherPageViewModel;
         }
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new AppShell());
+            return new Window(new WeatherPageView(weatherPageViewModel));
         }
     }
 }

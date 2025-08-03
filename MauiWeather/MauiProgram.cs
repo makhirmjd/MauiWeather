@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using MauiWeather.ViewModels;
+using Microsoft.Extensions.Logging;
 
 namespace MauiWeather
 {
@@ -18,8 +19,14 @@ namespace MauiWeather
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+            ConfigureServices(builder.Services);
 
             return builder.Build();
+        }
+
+        private static void ConfigureServices(IServiceCollection services)
+        {
+            services.AddSingleton<WeatherPageViewModel>();
         }
     }
 }
