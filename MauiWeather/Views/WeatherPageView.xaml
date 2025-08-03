@@ -3,11 +3,16 @@
     x:Class="MauiWeather.Views.WeatherPageView"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ViewModels="clr-namespace:MauiWeather.ViewModels"
     Title="WeatherPageView">
     <Grid Margin="15" RowDefinitions=".08*,.1*,.5*,.1*,.3*">
         <Grid>
             <Border BackgroundColor="White" />
             <SearchBar Placeholder="Search" VerticalOptions="Center" />
         </Grid>
+        <VerticalStackLayout Grid.Row="1" Style="{StaticResource MainStackLayout}">
+            <Label Style="{StaticResource Title}" Text="Paris" />
+            <Label Text="July 08, 2050" />
+        </VerticalStackLayout>
     </Grid>
 </ContentPage>
