@@ -42,4 +42,6 @@
     <SolidColorBrush x:Key="Gray950Brush" Color="{StaticResource Gray950}" />
 
     <Color x:Key="DarkBlue">#060723</Color>
+    <Color x:Key="CardBlue">#11112B</Color>
+    <Color x:Key="Yellow100Accent">#FFFF8D</Color>
 </ResourceDictionary>
