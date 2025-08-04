@@ -19,5 +19,25 @@
             Grid.Row="2"
             RepeatCount="-1"
             Source="storm.json" />
+        <Grid Grid.Row="3" ColumnDefinitions="*,*,*">
+            <VerticalStackLayout HorizontalOptions="Center" Spacing="10">
+                <Label Style="{StaticResource WeatherTitle}" Text="Temp" />
+                <Label Style="{StaticResource WeatherValue}" Text="25°C" />
+            </VerticalStackLayout>
+            <VerticalStackLayout
+                Grid.Column="1"
+                HorizontalOptions="Center"
+                Spacing="10">
+                <Label Style="{StaticResource WeatherTitle}" Text="Wind" />
+                <Label Style="{StaticResource WeatherValue}" Text="10Km/H" />
+            </VerticalStackLayout>
+            <VerticalStackLayout
+                Grid.Column="2"
+                HorizontalOptions="Center"
+                Spacing="10">
+                <Label Style="{StaticResource WeatherTitle}" Text="Weather" />
+                <Label Style="{StaticResource WeatherValue}" Text="Sunny" />
+            </VerticalStackLayout>
+        </Grid>
     </Grid>
 </ContentPage>
