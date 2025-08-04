@@ -5,11 +5,18 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:Skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     xmlns:ViewModels="clr-namespace:MauiWeather.ViewModels"
-    Title="WeatherPageView">
+    Title="WeatherPageView"
+    x:DataType="ViewModels:WeatherPageViewModel">
     <Grid Margin="15" RowDefinitions=".08*,.1*,.5*,.1*,.3*">
         <Grid>
             <Border BackgroundColor="White" />
-            <SearchBar Placeholder="Search" VerticalOptions="Center" />
+            <SearchBar
+                x:Name="SearchBar"
+                Placeholder="Search"
+                SearchCommand="{Binding SearchCommand}"
+                SearchCommandParameter="{Binding Text, Source={x:Reference SearchBar}}"
+                TextColor="Black"
+                VerticalOptions="Center" />
         </Grid>
         <VerticalStackLayout Grid.Row="1" Style="{StaticResource MainStackLayout}">
             <Label Style="{StaticResource Title}" Text="Paris" />
