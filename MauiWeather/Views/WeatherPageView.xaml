@@ -24,7 +24,10 @@
                 TextColor="Black"
                 VerticalOptions="Center" />
         </Grid>
-        <VerticalStackLayout Grid.Row="1" Style="{StaticResource MainStackLayout}">
+        <VerticalStackLayout
+            Grid.Row="1"
+            IsVisible="{Binding IsVisible}"
+            Style="{StaticResource MainStackLayout}">
             <Label Style="{StaticResource Title}" Text="{Binding PlaceName}" />
             <Label Text="{Binding Date, StringFormat='{0:MMMM dd, yyyy}'}" />
         </VerticalStackLayout>
@@ -32,7 +35,10 @@
             Grid.Row="2"
             RepeatCount="-1"
             Source="{Binding Weather.Current.WeatherCode, Converter={StaticResource CodeToLottieConverter}}" />
-        <Grid Grid.Row="3" ColumnDefinitions="*,*,*">
+        <Grid
+            Grid.Row="3"
+            ColumnDefinitions="*,*,*"
+            IsVisible="{Binding IsVisible}">
             <VerticalStackLayout HorizontalOptions="Center" Spacing="10">
                 <Label Style="{StaticResource WeatherTitle}" Text="Temp" />
                 <Label Style="{StaticResource WeatherValue}" Text="{Binding Weather.Current.Temperature, StringFormat='{0}°C'}" />
@@ -73,5 +79,16 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
+        <Grid
+            Grid.RowSpan="5"
+            Margin="-15"
+            BackgroundColor="Black"
+            IsVisible="{Binding IsLoading}"
+            Opacity=".9">
+            <ActivityIndicator
+                HorizontalOptions="Center"
+                IsRunning="True"
+                VerticalOptions="Center" />
+        </Grid>
     </Grid>
 </ContentPage>
