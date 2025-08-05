@@ -60,6 +60,19 @@ public partial class WeatherPageViewModel : ObservableObject
             string? responseBody = await response.Content.ReadAsStringAsync();
             
             Weather = JsonSerializer.Deserialize<Weather>(responseBody, options);
+            if (Weather is not null)
+            {
+                for (int i = 0; i < Weather.Daily!.Time.Length; i++)
+                {
+                    Weather.DailyDatas.Add(new()
+                    {
+                        Time = Weather.Daily!.Time[i],
+                        WeatherCode = Weather.Daily!.WeatherCode[i],
+                        MaxTemperature = Weather.Daily!.MaxTemperature[i],
+                        MinTemperature = Weather.Daily!.MinTemperature[i],
+                    });
+                }
+            }
         }
     }
 }
