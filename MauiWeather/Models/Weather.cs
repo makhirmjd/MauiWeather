@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Collections.ObjectModel;
+using System.Text.Json.Serialization;
 
 namespace MauiWeather.Models;
 
@@ -21,5 +22,7 @@ public class Weather
     [JsonPropertyName("daily_units")]
     public DailyUnits? DailyUnits { get; set; }
     public Daily? Daily { get; set; }
+
+    public ObservableCollection<DailyData> DailyDatas { get; set; } = [];
 }
 

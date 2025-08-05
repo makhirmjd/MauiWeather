@@ -4,6 +4,7 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:Converters="clr-namespace:MauiWeather.Converters"
+    xmlns:Models="clr-namespace:MauiWeather.Models"
     xmlns:Skia="clr-namespace:SkiaSharp.Extended.UI.Controls;assembly=SkiaSharp.Extended.UI"
     xmlns:ViewModels="clr-namespace:MauiWeather.ViewModels"
     Title="WeatherPageView"
@@ -51,31 +52,22 @@
                 <Label Style="{StaticResource WeatherValue}" Text="{Binding Weather.Current.WeatherCode, Converter={StaticResource CodeToWeatherConverter}}" />
             </VerticalStackLayout>
         </Grid>
-        <CollectionView Grid.Row="4">
-            <CollectionView.ItemsSource>
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>1</x:String>
-                    <x:String>2</x:String>
-                    <x:String>3</x:String>
-                    <x:String>4</x:String>
-                    <x:String>5</x:String>
-                </x:Array>
-            </CollectionView.ItemsSource>
+        <CollectionView Grid.Row="4" ItemsSource="{Binding Weather.DailyDatas}">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="Models:DailyData">
                     <Border Style="{StaticResource Card}">
                         <VerticalStackLayout Spacing="5" VerticalOptions="Center">
                             <Skia:SKLottieView
                                 HeightRequest="50"
                                 IsAnimationEnabled="False"
-                                Source="mist.json"
+                                Source="{Binding WeatherCode, Converter={StaticResource CodeToLottieConverter}}"
                                 WidthRequest="50" />
-                            <Label Text="08-02-2050" TextColor="{StaticResource Yellow100Accent}" />
-                            <Label Text="50°C" />
-                            <Label Text="Sunny" />
+                            <Label Text="{Binding Time, StringFormat='{0:MMMM dd, yyyy}'}" TextColor="{StaticResource Yellow100Accent}" />
+                            <Label Text="{Binding MaxTemperature, StringFormat='{0}°C'}" />
+                            <Label Text="{Binding WeatherCode, Converter={StaticResource CodeToWeatherConverter}}" />
                         </VerticalStackLayout>
                     </Border>
                 </DataTemplate>
