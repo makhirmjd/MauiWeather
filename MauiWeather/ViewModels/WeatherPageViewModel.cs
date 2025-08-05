@@ -17,6 +17,12 @@ public partial class WeatherPageViewModel : ObservableObject
     [ObservableProperty]
     private DateTime date = DateTime.Now;
 
+    [ObservableProperty]
+    private bool isVisible;
+
+    [ObservableProperty]
+    private bool isLoading;
+
     private readonly HttpClient httpClient;
     private readonly JsonSerializerOptions options;
 
@@ -53,6 +59,7 @@ public partial class WeatherPageViewModel : ObservableObject
 
     private async Task GetWeather(Location location)
     {
+        IsLoading = true;
         string url = $"https://api.open-meteo.com/v1/forecast?latitude={location.Latitude}&longitude={location.Longitude}&daily=weather_code,temperature_2m_max,temperature_2m_min&current=temperature_2m,wind_speed_10m,weather_code&timezone=auto";
         HttpResponseMessage response = await httpClient.GetAsync(url);
         if (response.IsSuccessStatusCode)
@@ -72,7 +79,9 @@ public partial class WeatherPageViewModel : ObservableObject
                         MinTemperature = Weather.Daily!.MinTemperature[i],
                     });
                 }
+                IsVisible = true;
             }
         }
+        IsLoading = false;
     }
 }
