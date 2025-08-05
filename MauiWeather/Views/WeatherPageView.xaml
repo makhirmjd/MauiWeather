@@ -19,8 +19,8 @@
                 VerticalOptions="Center" />
         </Grid>
         <VerticalStackLayout Grid.Row="1" Style="{StaticResource MainStackLayout}">
-            <Label Style="{StaticResource Title}" Text="Paris" />
-            <Label Text="July 08, 2050" />
+            <Label Style="{StaticResource Title}" Text="{Binding PlaceName}" />
+            <Label Text="{Binding Date, StringFormat='{0:MMMM dd, yyyy}'}" />
         </VerticalStackLayout>
         <Skia:SKLottieView
             Grid.Row="2"
@@ -29,21 +29,21 @@
         <Grid Grid.Row="3" ColumnDefinitions="*,*,*">
             <VerticalStackLayout HorizontalOptions="Center" Spacing="10">
                 <Label Style="{StaticResource WeatherTitle}" Text="Temp" />
-                <Label Style="{StaticResource WeatherValue}" Text="25°C" />
+                <Label Style="{StaticResource WeatherValue}" Text="{Binding Weather.Current.Temperature, StringFormat='{0}°C'}" />
             </VerticalStackLayout>
             <VerticalStackLayout
                 Grid.Column="1"
                 HorizontalOptions="Center"
                 Spacing="10">
                 <Label Style="{StaticResource WeatherTitle}" Text="Wind" />
-                <Label Style="{StaticResource WeatherValue}" Text="10Km/H" />
+                <Label Style="{StaticResource WeatherValue}" Text="{Binding Weather.Current.WindSpeed, StringFormat='{0}Km/h'}" />
             </VerticalStackLayout>
             <VerticalStackLayout
                 Grid.Column="2"
                 HorizontalOptions="Center"
                 Spacing="10">
                 <Label Style="{StaticResource WeatherTitle}" Text="Weather" />
-                <Label Style="{StaticResource WeatherValue}" Text="Sunny" />
+                <Label Style="{StaticResource WeatherValue}" Text="{Binding Weather.Current.WeatherCode}" />
             </VerticalStackLayout>
         </Grid>
         <CollectionView Grid.Row="4">

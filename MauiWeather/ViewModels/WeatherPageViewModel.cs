@@ -10,6 +10,12 @@ public partial class WeatherPageViewModel : ObservableObject
 {
     public Weather? Weather { get; set; }
 
+    [ObservableProperty]
+    private string? placeName;
+
+    [ObservableProperty]
+    private DateTime date = DateTime.Now;
+
     private readonly HttpClient httpClient;
     private readonly JsonSerializerOptions options;
 
@@ -23,6 +29,7 @@ public partial class WeatherPageViewModel : ObservableObject
     [RelayCommand]
     public async Task Search(string searchText)
     {
+        PlaceName = searchText;
         Location? location = await GetCoordinatesAsync(searchText);
         if (location is not null)
         {
