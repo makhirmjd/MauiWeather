@@ -8,7 +8,8 @@ namespace MauiWeather.ViewModels;
 
 public partial class WeatherPageViewModel : ObservableObject
 {
-    public Weather? Weather { get; set; }
+    [ObservableProperty]
+    public Weather? weather;
 
     [ObservableProperty]
     private string? placeName;
